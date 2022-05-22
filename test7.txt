@@ -1,0 +1,22 @@
+#!/bin/bash
+
+#Игра угадайка
+#Получить случайное число <100
+target=$(($RANDOM % 100))
+#Инициализировать предложения пользователя
+guess=
+
+until [[ $guess -eq $target ]]; do
+    read -p "Take a guess: " guess
+	if [[ $guess -eq a-z ]]; then
+	    echo "Enter a number"
+	elif [[ $guess -lt $target ]]; then
+	    echo "Higher!"
+	elif [[ $guess -gt $target ]]; then
+	    echo "Lower!"
+		else
+	    echo "You found it!"
+	fi
+done
+
+exit 0
