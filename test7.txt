@@ -4,7 +4,7 @@
 #Получить случайное число <100
 target=$(($RANDOM % 100))
 
-echo "enter the number of attempts"
+echo "Enter the number of attempts"
 read attempt
 
 #Инициализировать предложения пользователя
