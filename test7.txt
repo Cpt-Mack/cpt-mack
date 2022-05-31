@@ -3,20 +3,31 @@
 #Игра угадайка
 #Получить случайное число <100
 target=$(($RANDOM % 100))
+echo "number of attempts: 10"
 #Инициализировать предложения пользователя
 guess=
+attempt=9
+
 
 until [[ $guess -eq $target ]]; do
     read -p "Take a guess: " guess
 	if [[ $guess -eq a-z ]]; then
-	    echo "Enter a number"
+	    echo "Enter a number! attempts left" $attempt
+		attempt=$(( $attempt -1 ))
 	elif [[ $guess -lt $target ]]; then
-	    echo "Higher!"
+	    echo "Higher! attempts left" $attempt
+		attempt=$(( $attempt -1 ))
 	elif [[ $guess -gt $target ]]; then
-	    echo "Lower!"
-		else
+	    echo "Lower! attempts left" $attempt
+		attempt=$(( $attempt -1 ))
+	else
 	    echo "You found it!"
-	fi
+	
+	fi	
+	if [[ $attempt -lt 0 ]]; then	
+		echo "Game over"
+		exit 0
+	fi	
+	
 done
-
 exit 0
